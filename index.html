@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 70vh; /* Set the body height to 70% of the viewport height */
+      margin: 0;
+      overflow: hidden; /* Prevent page scrolling */
+      background-color: #f8bbd0;
+    }
+
+    #image-container {
+      margin-bottom: 20px;
+    }
+
+    #valentine-card {
+      position: relative;
+      width: 100vh;
+      height: 70vh;
+      background-color: #f8bbd0;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #button-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    #yes-button, #no-button {
+      position: absolute;
+      bottom: 20px;
+      width: 80px;
+      height: 40px; /* Set a fixed height */
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    #yes-button {
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    #no-button {
+      left: 20px;
+      background-color: #f44336;
+      color: #fff;
+    }
+    
+    #valentine-gif {
+      width: 400px;
+      height: 400px;
+      top: 40px; /* Leave a 40px margin from the top */
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+     <div id="image-container">
+      <img id="valentine-gif" src="./on-top-bubu.gif" alt="Valentine GIF">
+    </div>
+
+  <div id="valentine-card">
+    <h2>Will you be my Valentine?</h2> 
+    <div id="button-container">
+      <button id="yes-button">Yes</button>
+      <button id="no-button">No</button>
+    </div>
+  </div>
+
+  <script>
+    const noButton = document.getElementById('no-button');
+    const buttonContainer = document.getElementById('button-container');
+    const valentineGif = document.getElementById('valentine-gif');
+    const yesButton = document.getElementById('yes-button');
+
+    let hoverCount = 0;
+
+    noButton.addEventListener('mouseover', () => {
+      hoverCount++;
+
+      if (hoverCount === 10) {
+        // Change the GIF after 10 hover events
+        valentineGif.src = "./leave-me-alone-snubbed.gif";
+      }
+    });
+
+    noButton.addEventListener('mousemove', () => {
+      const maxX = buttonContainer.clientWidth - noButton.clientWidth;
+      const maxY = buttonContainer.clientHeight - noButton.clientHeight;
+
+      const randomX = Math.max(0, Math.min(maxX, Math.floor(Math.random() * maxX)));
+      const randomY = Math.max(0, Math.min(maxY, Math.floor(Math.random() * maxY)));
+
+      noButton.style.left = `${randomX}px`;
+      noButton.style.top = `${randomY}px`;
+    });
+
+      yesButton.addEventListener('click', () => {
+      // Change the GIF when the "Yes" button is pressed
+      valentineGif.src = "./love-you.gif";
+      hoverCount = 0;
+    });
+  </script>
+</body>
+</html>
