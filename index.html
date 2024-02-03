@@ -81,39 +81,47 @@
     </div>
   </div>
 
-  <script>
-    const noButton = document.getElementById('no-button');
-    const buttonContainer = document.getElementById('button-container');
-    const valentineGif = document.getElementById('valentine-gif');
-    const yesButton = document.getElementById('yes-button');
+ <script>
+  const noButton = document.getElementById('no-button');
+  const yesButton = document.getElementById('yes-button');
+  const valentineGif = document.getElementById('valentine-gif');
+  const buttonContainer = document.getElementById('button-container');
 
-    let hoverCount = 0;
+  let hoverCount = 0;
 
-    noButton.addEventListener('mouseover', () => {
-      hoverCount++;
+  noButton.addEventListener('mouseover', () => {
+    hoverCount++;
 
-      if (hoverCount === 3) {
-        // Change the GIF after 10 hover events
-        valentineGif.src = "./leave-me-alone-snubbed.gif";
-      }
-    });
+    if (hoverCount === 3) {
+      // Change the GIF after 3 hover events
+      valentineGif.src = "./leave-me-alone-snubbed.gif";
+    }
 
-    noButton.addEventListener('mousemove', () => {
-      const maxX = buttonContainer.clientWidth - noButton.clientWidth;
-      const maxY = buttonContainer.clientHeight - noButton.clientHeight;
+    // Increase the size of the "Yes" button on each hover
+    const currentSize = window.getComputedStyle(yesButton).getPropertyValue('width');
+    const newSize = parseFloat(currentSize) + 10; // Increase by 5 pixels
+    yesButton.style.width = `${newSize}px`;
+    yesButton.style.height = `${newSize}px`;
+  });
 
-      const randomX = Math.max(0, Math.min(maxX, Math.floor(Math.random() * maxX)));
-      const randomY = Math.max(0, Math.min(maxY, Math.floor(Math.random() * maxY)));
+  noButton.addEventListener('mousemove', () => {
+    const maxX = buttonContainer.clientWidth - noButton.clientWidth;
+    const maxY = buttonContainer.clientHeight - noButton.clientHeight;
 
-      noButton.style.left = `${randomX}px`;
-      noButton.style.top = `${randomY}px`;
-    });
+    const randomX = Math.max(0, Math.min(maxX, Math.floor(Math.random() * maxX)));
+    const randomY = Math.max(0, Math.min(maxY, Math.floor(Math.random() * maxY)));
 
-      yesButton.addEventListener('click', () => {
-      // Change the GIF when the "Yes" button is pressed
-      valentineGif.src = "./love-you.gif";
-      hoverCount = 0;
-    });
-  </script>
+    noButton.style.left = `${randomX}px`;
+    noButton.style.top = `${randomY}px`;
+  });
+
+  yesButton.addEventListener('click', () => {
+    // Change the GIF when the "Yes" button is pressed
+    valentineGif.src = "./love-you.gif";
+    hoverCount = 0;
+    noButton.style.display = "none";
+  });
+</script>
+
 </body>
 </html>
