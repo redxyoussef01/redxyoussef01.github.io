@@ -27,10 +27,6 @@
                 <input type="radio" name="q1" value="corporate"> Entreprises et services professionnels<br>
                 <input type="radio" name="q1" value="startup"> Startups et entrepreneurs<br>
                 <input type="radio" name="q1" value="creative"> Secteur créatif et artistique<br>
-                <input type="radio" name="q1" value="freelancer"> Indépendants et auto-entrepreneurs<br>
-                <input type="radio" name="q1" value="government"> Secteur public et administration<br>
-                <input type="radio" name="q1" value="nonprofit"> Associations et ONG<br>
-                <input type="radio" name="q1" value="techgiant"> Grandes entreprises technologiques<br>
             </div>
             
             <div class="question">
@@ -38,10 +34,6 @@
                 <input type="radio" name="q2" value="corporate"> Budget élevé avec paiements structurés<br>
                 <input type="radio" name="q2" value="startup"> Budget moyen mais flexible<br>
                 <input type="radio" name="q2" value="creative"> Petit budget mais ouvert à la négociation<br>
-                <input type="radio" name="q2" value="freelancer"> Budget limité mais recherche qualité/prix<br>
-                <input type="radio" name="q2" value="government"> Budget fixe et contrôlé<br>
-                <input type="radio" name="q2" value="nonprofit"> Budget restreint, cherche du financement<br>
-                <input type="radio" name="q2" value="techgiant"> Budget important pour des solutions premium<br>
             </div>
             
             <div class="question">
@@ -49,12 +41,57 @@
                 <input type="radio" name="q3" value="corporate"> E-mails et rapports formels<br>
                 <input type="radio" name="q3" value="startup"> Réunions et appels réguliers<br>
                 <input type="radio" name="q3" value="creative"> Discussions informelles et sessions de brainstorming<br>
-                <input type="radio" name="q3" value="freelancer"> Messagerie rapide et flexible<br>
-                <input type="radio" name="q3" value="government"> Procédures officielles et longues validations<br>
-                <input type="radio" name="q3" value="nonprofit"> Collaboration humaine et personnalisée<br>
-                <input type="radio" name="q3" value="techgiant"> Rapports de performance et KPI<br>
             </div>
-
+            
+            <div class="question">
+                <p>4. Comment votre client idéal prend-il des décisions ?</p>
+                <input type="radio" name="q4" value="corporate"> Basé sur les données et l'analyse<br>
+                <input type="radio" name="q4" value="startup"> Décisions rapides avec prise de risque<br>
+                <input type="radio" name="q4" value="creative"> Basé sur l'intuition et l'émotion<br>
+            </div>
+            
+            <div class="question">
+                <p>5. À quel point souhaitez-vous que votre client soit impliqué ?</p>
+                <input type="radio" name="q5" value="corporate"> Implication minimale, me fait confiance<br>
+                <input type="radio" name="q5" value="startup"> Collabore et donne des retours fréquents<br>
+                <input type="radio" name="q5" value="creative"> Très impliqué dans chaque étape<br>
+            </div>
+            
+            <div class="question">
+                <p>6. Quel est votre calendrier de projet idéal ?</p>
+                <input type="radio" name="q6" value="corporate"> Délais fixes et étapes structurées<br>
+                <input type="radio" name="q6" value="startup"> Approche agile et adaptable<br>
+                <input type="radio" name="q6" value="creative"> Délais flexibles et ouverts<br>
+            </div>
+            
+            <div class="question">
+                <p>7. Comment votre client idéal doit-il gérer les retours ?</p>
+                <input type="radio" name="q7" value="corporate"> Professionnel et constructif<br>
+                <input type="radio" name="q7" value="startup"> Rapide avec un feedback direct<br>
+                <input type="radio" name="q7" value="creative"> Discussion ouverte avec liberté créative<br>
+            </div>
+            
+            <div class="question">
+                <p>8. Comment votre client idéal gère-t-il les risques ?</p>
+                <input type="radio" name="q8" value="corporate"> Évite les risques avec des stratégies calculées<br>
+                <input type="radio" name="q8" value="startup"> Prend des risques pour la croissance<br>
+                <input type="radio" name="q8" value="creative"> Expérimente et explore de nouvelles idées<br>
+            </div>
+            
+            <div class="question">
+                <p>9. Quel type de relation professionnelle recherchez-vous ?</p>
+                <input type="radio" name="q9" value="corporate"> Professionnelle et transactionnelle<br>
+                <input type="radio" name="q9" value="startup"> Partenariat à long terme basé sur la confiance<br>
+                <input type="radio" name="q9" value="creative"> Connexion personnelle et amicale<br>
+            </div>
+            
+            <div class="question">
+                <p>10. Comment mesurez-vous le succès d'une relation client ?</p>
+                <input type="radio" name="q10" value="corporate"> ROI et efficacité du projet<br>
+                <input type="radio" name="q10" value="startup"> Croissance et innovation commune<br>
+                <input type="radio" name="q10" value="creative"> Plaisir et inspiration mutuelle<br>
+            </div>
+            
             <button type="button" onclick="calculateResult()">Voir le Résultat</button>
         </form>
         
@@ -63,15 +100,7 @@
     
     <script>
         function calculateResult() {
-            let answers = { 
-                corporate: 0, 
-                startup: 0, 
-                creative: 0, 
-                freelancer: 0, 
-                government: 0, 
-                nonprofit: 0, 
-                techgiant: 0 
-            };
+            let answers = { corporate: 0, startup: 0, creative: 0 };
             let questions = document.querySelectorAll('.question');
             let allAnswered = true;
     
@@ -93,11 +122,7 @@
             let resultText = {
                 corporate: "Votre client idéal est un professionnel d'entreprise : Structuré, axé sur les données et efficace.",
                 startup: "Votre client idéal est un entrepreneur startup : Rapide, innovant et prêt à prendre des risques.",
-                creative: "Votre client idéal est un collaborateur créatif : Passionné, intuitif et inspirant.",
-                freelancer: "Votre client idéal est un travailleur indépendant : Agile, flexible et soucieux du budget.",
-                government: "Votre client idéal est une institution publique : Formalisé, structuré et nécessitant des processus longs.",
-                nonprofit: "Votre client idéal est une association ou ONG : Engagé, orienté impact et souvent à budget limité.",
-                techgiant: "Votre client idéal est une grande entreprise tech : Axé sur l’innovation, la performance et les résultats."
+                creative: "Votre client idéal est un collaborateur créatif : Passionné, intuitif et inspirant."
             };
             
             document.getElementById('result').innerText = resultText[highest];
