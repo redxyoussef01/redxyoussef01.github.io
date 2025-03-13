@@ -101,17 +101,33 @@
     <script>
         function calculateResult() {
             let answers = { corporate: 0, startup: 0, creative: 0 };
-            document.querySelectorAll('input[type="radio"]:checked').forEach(input => {
-                answers[input.value]++;
+            let questions = document.querySelectorAll('.question');
+            let allAnswered = true;
+    
+            questions.forEach(question => {
+                let checked = question.querySelector('input[type="radio"]:checked');
+                if (!checked) {
+                    allAnswered = false;
+                } else {
+                    answers[checked.value]++;
+                }
             });
+    
+            if (!allAnswered) {
+                alert("Veuillez répondre à toutes les questions avant de voir le résultat.");
+                return;
+            }
+    
             let highest = Object.keys(answers).reduce((a, b) => answers[a] > answers[b] ? a : b);
             let resultText = {
                 corporate: "Votre client idéal est un professionnel d'entreprise : Structuré, axé sur les données et efficace.",
                 startup: "Votre client idéal est un entrepreneur startup : Rapide, innovant et prêt à prendre des risques.",
                 creative: "Votre client idéal est un collaborateur créatif : Passionné, intuitif et inspirant."
             };
+            
             document.getElementById('result').innerText = resultText[highest];
         }
     </script>
+    
 </body>
 </html>
